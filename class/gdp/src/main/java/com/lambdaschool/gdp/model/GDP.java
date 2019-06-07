@@ -20,8 +20,8 @@ public class GDP
         this.country = country;
         this.economy = economy;
 
-        logger.info("We created an gdp");
-        logger.debug("Yes we created a gdp with id " + this.id);
+        logger.info("We created an gdp.html");
+        logger.debug("Yes we created a gdp.html with id " + this.id);
     }
 
     public GDP(String country, String economy)

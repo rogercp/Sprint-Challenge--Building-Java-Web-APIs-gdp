@@ -1,7 +1,6 @@
 package com.lambdaschool.gdp.controller;
 
 import com.lambdaschool.gdp.GdpApplication;
-import com.lambdaschool.gdp.GdpApplication;
 import com.lambdaschool.gdp.GdpList;
 import com.lambdaschool.gdp.exception.ResourceNotFoundException;
 import com.lambdaschool.gdp.model.GDP;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 @RestController
 @RequestMapping("/gdp")
@@ -59,7 +57,7 @@ public class GdpController
 
 
     @GetMapping(value = "/country/{id}")
-    public ResponseEntity<?> getDogDetail(@PathVariable long id)
+    public ResponseEntity<?> getGdpDetail(@PathVariable long id)
     {
         logger.info("/country/" + id + " accessed");
 
@@ -92,21 +90,21 @@ public class GdpController
     }
 
     @GetMapping(value = "/economy/table")
-    public ModelAndView displayEconomiesTable()
+    public ModelAndView displayGdpTable()
     {
-        GdpList rtnEconomy = GdpApplication.myGdpList;
 
-        rtnEconomy.gdpList.sort((g1, g2) -> (int) (g2.getEconomy() - g1.getEconomy()));
+        ArrayList<GDP> rtnEconomy = GdpApplication.myGdpList.gdpList;
 
-        logger.trace("/economy/table accessed");
+
+        rtnEconomy.sort((g1, g2) -> (int) (g2.getEconomy() - g1.getEconomy()));
+
+        logger.trace("/table accessed");
+
 
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("economies");
+        mav.setViewName("gdp");
         mav.addObject("gdpList", rtnEconomy);
 
         return mav;
     }
-
-
-
 }
