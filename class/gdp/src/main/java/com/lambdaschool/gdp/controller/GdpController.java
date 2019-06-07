@@ -45,25 +45,15 @@ public class GdpController
 
     }
 
-    @GetMapping(value = "/economy",
-            produces = {"application/json"})
-    public ResponseEntity<?> findGdp(HttpServletRequest request)
-    {
-        logger.info(request.getRequestURI() + " accessed");
-
-//        ArrayListList<GDP> countries = repository.findAll();
-//        countries.sort(Comparator.comparingLong(c -> c.getGdp()));
-//        Collections.reverse(countries);
-//        return countries;
+    @GetMapping(value = "/economy")
+    public ResponseEntity<?> getByGDP() {
+        logger.info("/economy was accessed");
 
 
-        GdpApplication.myGdpList.gdpList.sort(Comparator.comparingLong(c -> c.getEconomy())));
-
-
-        return new ResponseEntity<>( GdpApplication.myGdpList.gdpList,HttpStatus.OK);
-
+        GdpList rtnEconomyList = GdpApplication.myGdpList;
+        rtnEconomyList.gdpList.sort((e1, e2) -> (int) (e2.getEconomy() - e1.getEconomy()));
+        return new ResponseEntity<>(rtnEconomyList, HttpStatus.OK);
     }
-
 
 
 

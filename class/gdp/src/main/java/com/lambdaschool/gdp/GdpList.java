@@ -140,4 +140,25 @@ public class GdpList
 
         return tempDogList;
     }
+
+    public GDP findMedianGdp() {
+        ArrayList<GDP> tempList = new ArrayList<>();
+        tempList.addAll(gdpList);
+
+        int len = gdpList.size();
+
+        tempList.sort((e1, e2) -> (int) (e1.getEconomy() - e2.getEconomy()));
+
+        return tempList.get((len/2));
+    }
+
+    public GDP getTotal() {
+        long total = 0;
+        for (GDP e : gdpList) {
+            total += e.getEconomy();
+        }
+        GDP rtnEconomy = new GDP("Total", total);
+        return rtnEconomy;
+    }
+
 }

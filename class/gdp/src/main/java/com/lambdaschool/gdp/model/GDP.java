@@ -12,9 +12,9 @@ public class GDP
     private static final AtomicLong counter = new AtomicLong();
     private long id;
     private String country;
-    private String economy;
+    private long economy;
 
-    public GDP( String country, String economy)
+    public GDP( String country, long economy)
     {
         this.id = counter.incrementAndGet();
         this.country = country;
@@ -24,13 +24,18 @@ public class GDP
         logger.debug("Yes we created a gdp with id " + this.id);
     }
 
-
+    public GDP(String country, String economy)
+    {
+        this.id = counter.incrementAndGet();
+        this.country = country;
+        this.economy = Long.parseLong(economy);
+    }
 
     public GDP(GDP toClone)
     {
         this.id = toClone.getId();
         this.country =toClone.getCountry();
-        this.economy =toClone.getEconomy();
+        this.economy =toClone.economy;
 
 
     }
@@ -56,15 +61,16 @@ public class GDP
         this.country = country;
     }
 
-    public String getEconomy()
+    public long getEconomy()
     {
         return economy;
     }
 
-    public void setEconomy(String economy)
+    public void setEconomy(int economy)
     {
         this.economy = economy;
     }
+
 
     @Override
     public String toString()
