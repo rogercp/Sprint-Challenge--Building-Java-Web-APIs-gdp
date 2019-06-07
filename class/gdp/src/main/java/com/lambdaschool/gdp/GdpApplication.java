@@ -1,5 +1,5 @@
 
-package com.lambdaschool.gdp.;
+package com.lambdaschool.gdp;
 
 
 import org.springframework.boot.SpringApplication;
