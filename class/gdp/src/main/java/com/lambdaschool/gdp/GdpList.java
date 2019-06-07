@@ -128,17 +128,17 @@ public class GdpList
 
     public ArrayList<GDP> findGdps(CheckGdp tester)
     {
-        ArrayList<GDP> tempDogList = new ArrayList<>();
+        ArrayList<GDP> tempGdpList = new ArrayList<>();
 
         for (GDP g : gdpList)
         {
             if (tester.test(g))
             {
-                tempDogList.add(g);
+                tempGdpList.add(g);
             }
         }
 
-        return tempDogList;
+        return tempGdpList;
     }
 
     public GDP findMedianGdp() {

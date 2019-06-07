@@ -83,6 +83,14 @@ public class GdpController
         return new ResponseEntity<>(GdpApplication.myGdpList.findMedianGdp(), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/total",
+            produces = {"application/json"})
+    public ResponseEntity<?> getTotal() {
+
+        logger.info("/total accessed");
+        return new ResponseEntity<>(GdpApplication.myGdpList.getTotal(), HttpStatus.OK);
+    }
+
     @GetMapping(value = "/economy/table")
     public ModelAndView displayEconomiesTable()
     {
