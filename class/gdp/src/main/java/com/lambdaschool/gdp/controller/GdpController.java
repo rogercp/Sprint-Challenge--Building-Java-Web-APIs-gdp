@@ -46,7 +46,8 @@ public class GdpController
     }
 
     @GetMapping(value = "/economy")
-    public ResponseEntity<?> getByGDP() {
+    public ResponseEntity<?> getByGDP()
+    {
         logger.info("/economy was accessed");
 
 
@@ -73,6 +74,30 @@ public class GdpController
         return new ResponseEntity<>(rtnGdp, HttpStatus.OK);
     }
 
+
+    @GetMapping(value = "/country/stats/median",
+            produces = {"application/json"})
+    public ResponseEntity<?> getMedianGdp()
+    {
+        logger.info("/country/stats/median was accessed");
+        return new ResponseEntity<>(GdpApplication.myGdpList.findMedianGdp(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/economy/table")
+    public ModelAndView displayEconomiesTable()
+    {
+        GdpList rtnEconomy = GdpApplication.myGdpList;
+
+        rtnEconomy.gdpList.sort((g1, g2) -> (int) (g2.getEconomy() - g1.getEconomy()));
+
+        logger.trace("/economy/table accessed");
+
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("economies");
+        mav.addObject("gdpList", rtnEconomy);
+
+        return mav;
+    }
 
 
 

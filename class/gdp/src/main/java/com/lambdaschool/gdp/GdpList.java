@@ -143,6 +143,7 @@ public class GdpList
 
     public GDP findMedianGdp() {
         ArrayList<GDP> tempList = new ArrayList<>();
+
         tempList.addAll(gdpList);
 
         int len = gdpList.size();
