@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 @RestController
 @RequestMapping("/gdp")
@@ -44,6 +45,43 @@ public class GdpController
 
     }
 
+    @GetMapping(value = "/economy",
+            produces = {"application/json"})
+    public ResponseEntity<?> findGdp(HttpServletRequest request)
+    {
+        logger.info(request.getRequestURI() + " accessed");
+
+//        ArrayListList<GDP> countries = repository.findAll();
+//        countries.sort(Comparator.comparingLong(c -> c.getGdp()));
+//        Collections.reverse(countries);
+//        return countries;
+
+
+        GdpApplication.myGdpList.gdpList.sort(Comparator.comparingLong(c -> c.getEconomy())));
+
+
+        return new ResponseEntity<>( GdpApplication.myGdpList.gdpList,HttpStatus.OK);
+
+    }
+
+
+
+
+    @GetMapping(value = "/country/{id}")
+    public ResponseEntity<?> getDogDetail(@PathVariable long id)
+    {
+        logger.info("/country/" + id + " accessed");
+
+        GDP rtnGdp;
+        if (GdpApplication.myGdpList.findGdp(g -> (g.getId() == id)) == null)
+        {
+            throw new ResourceNotFoundException("Country with id " + id + " not found!");
+        } else
+        {
+            rtnGdp = GdpApplication.myGdpList.findGdp(g -> (g.getId() == id));
+        }
+        return new ResponseEntity<>(rtnGdp, HttpStatus.OK);
+    }
 
 
 

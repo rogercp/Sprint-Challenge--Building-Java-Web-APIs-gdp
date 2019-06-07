@@ -24,9 +24,7 @@ public class GDP
         logger.debug("Yes we created a gdp with id " + this.id);
     }
 
-    public GDP()
-    {
-    }
+
 
     public GDP(GDP toClone)
     {
@@ -37,11 +35,15 @@ public class GDP
 
     }
 
+    public GDP()
+    {
+    }
 
     public long getId()
     {
         return id;
     }
+
 
 
     public String getCountry()
